@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteContact } from 'store/slice';
 
 import css from './ContactList.module.css';
 import { selectContacts, selectFilter } from 'store/selectors';
@@ -12,15 +11,12 @@ export const ContactList = () => {
   const filter = useSelector(selectFilter);
 
   const filterContacts = () => {
-    console.log(items);
     return items.filter(contact =>
       contact.name.toLowerCase().includes(filter.toLowerCase())
     );
   };
   const handleDelete = id => {
-    dispatch(deleteContact(id));
     dispatch(deleteContactsThunk(id));
-    console.log(id);
   };
 
   useEffect(() => {
@@ -31,7 +27,7 @@ export const ContactList = () => {
     <ul className={css.contactList}>
       {filterContacts().map(contact => (
         <li key={contact.id}>
-          {contact.name}: {contact.number}
+          {contact.name}: {contact.phone}
           <button
             className={css.itemButton}
             type="button"

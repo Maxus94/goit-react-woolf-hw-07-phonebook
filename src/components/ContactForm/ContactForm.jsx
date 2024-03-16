@@ -2,7 +2,6 @@ import { useState } from 'react';
 import css from './ContactForm.module.css';
 import { nanoid } from 'nanoid';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'store/slice';
 import { selectContacts } from 'store/selectors';
 import { addContactsThunk } from 'store/thunks';
 
@@ -22,13 +21,7 @@ export const ContactForm = () => {
       alert('Contact already exists');
       return;
     }
-    dispatch(
-      addContact({
-        id: nanoid(),
-        name,
-        number,
-      })
-    );
+
     dispatch(
       addContactsThunk({
         id: nanoid(),
