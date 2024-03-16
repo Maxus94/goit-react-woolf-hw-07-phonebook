@@ -4,7 +4,7 @@ import { deleteContact } from 'store/slice';
 
 import css from './ContactList.module.css';
 import { selectContacts, selectFilter } from 'store/selectors';
-import { getContactsThunk } from 'store/thunks';
+import { deleteContactsThunk, getContactsThunk } from 'store/thunks';
 
 export const ContactList = () => {
   const dispatch = useDispatch();
@@ -19,6 +19,8 @@ export const ContactList = () => {
   };
   const handleDelete = id => {
     dispatch(deleteContact(id));
+    dispatch(deleteContactsThunk(id));
+    console.log(id);
   };
 
   useEffect(() => {

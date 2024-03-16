@@ -8,3 +8,13 @@ export const getAllContactsApi = async () => {
   const { data } = await instanceContacts(`contacts`);
   return data;
 };
+
+export const deleteContactsApi = async id => {
+  const { data } = await instanceContacts.delete(`/contacts/${id}`);
+  return data;
+};
+
+export const addUserApi = async item => {
+  const { data } = await instanceContacts.post(`/contacts`, item);
+  return data;
+};

@@ -1,10 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
+  handleDeleteFulfilled,
   handleFulfilledContacts,
   handlePending,
   handleRejected,
 } from './handlers';
-import { getContactsThunk } from './thunks';
+import {
+  addContactsThunk,
+  deleteContactsThunk,
+  getContactsThunk,
+} from './thunks';
 
 const contactsSlice = createSlice({
   name: 'contacts',
@@ -34,7 +39,9 @@ const contactsSlice = createSlice({
     builder
       .addCase(getContactsThunk.fulfilled, handleFulfilledContacts)
       .addCase(getContactsThunk.pending, handlePending)
-      .addCase(getContactsThunk.rejected, handleRejected);
+      .addCase(getContactsThunk.rejected, handleRejected)
+      .addCase(deleteContactsThunk.fulfilled, handleDeleteFulfilled)
+      .addCase(addContactsThunk.fulfilled, handleDeleteFulfilled);
   },
 });
 

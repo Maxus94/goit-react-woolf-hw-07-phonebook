@@ -4,6 +4,12 @@ export const handleFulfilledContacts = (state, { payload }) => {
   console.log(state.contacts.isLoading);
 };
 
+export const handleDeleteFulfilled = (state, { payload }) => {
+  state.contacts.items = [...payload];
+  state.contacts.isLoading = false;
+  console.log(payload);
+};
+
 export const handlePending = state => {
   state.contacts.isLoading = true;
   console.log(state.contacts.isLoading);

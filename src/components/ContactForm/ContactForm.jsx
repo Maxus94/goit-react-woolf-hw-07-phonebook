@@ -4,6 +4,7 @@ import { nanoid } from 'nanoid';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'store/slice';
 import { selectContacts } from 'store/selectors';
+import { addContactsThunk } from 'store/thunks';
 
 export const ContactForm = () => {
   const [name, setName] = useState('');
@@ -26,6 +27,14 @@ export const ContactForm = () => {
         id: nanoid(),
         name,
         number,
+      })
+    );
+    dispatch(
+      addContactsThunk({
+        id: nanoid(),
+        name,
+        phone: number,
+        createdAt: new Date(),
       })
     );
   };
